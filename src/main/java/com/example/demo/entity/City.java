@@ -1,10 +1,12 @@
 package com.example.demo.entity;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-@Entity
-public class Country {
+public class City {
+
     @Id
     @GeneratedValue
     private Integer id;
@@ -12,10 +14,13 @@ public class Country {
     @Column
     private String name;
 
-    @OneToMany
-    List<City> cities;
+    @Column
+    private int isCapital;
 
-    public Country() {
+    @ManyToOne
+    private Country country;
+
+    public City() {
     }
 
     public Integer getId() {
@@ -34,20 +39,20 @@ public class Country {
         this.name = name;
     }
 
-    public List<City> getCities() {
-        return cities;
+    public int getIsCapital() {
+        return isCapital;
     }
 
-    public void setCities(List<City> cities) {
-        this.cities = cities;
+    public void setIsCapital(int isCapital) {
+        this.isCapital = isCapital;
     }
 
     @Override
     public String toString() {
-        return "Country{" +
+        return "City{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", cities=" + cities +
+                ", isCapital=" + isCapital +
                 '}';
     }
 }
